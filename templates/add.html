@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Mimpi Baru</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Tambah Mimpi Baru</h1>
+            <a href="{{ url_for('index') }}" class="back-link">← Kembali ke Beranda</a>
+        </header>
+
+        <div class="form-container">
+            <form method="POST" action="{{ url_for('add_dream') }}">
+                <div class="form-group">
+                    <label for="title">Judul Mimpi *</label>
+                    <input type="text" id="title" name="title" required placeholder="Contoh: Terbang di Atas Kota">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Deskripsi Mimpi *</label>
+                    <textarea id="description" name="description" rows="6" required placeholder="Ceritakan mimpi Anda secara detail..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dream_date">Tanggal Mimpi *</label>
+                        <input type="date" id="dream_date" name="dream_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mood">Mood Setelah Bangun *</label>
+                        <select id="mood" name="mood" required>
+                            <option value="">Pilih Mood</option>
+                            <option value="Happy">😊 Happy</option>
+                            <option value="Sad">😢 Sad</option>
+                            <option value="Scared">😱 Scared</option>
+                            <option value="Confused">😕 Confused</option>
+                            <option value="Peaceful">😌 Peaceful</option>
+                            <option value="Nostalgic">🥲 Nostalgic</option>
+                            <option value="Excited">🤩 Excited</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dream_type">Tipe Mimpi *</label>
+                    <select id="dream_type" name="dream_type" required>
+                        <option value="">Pilih Tipe</option>
+                        <option value="Normal Dream">Normal Dream</option>
+                        <option value="Lucid Dream">Lucid Dream (Sadar saat bermimpi)</option>
+                        <option value="Nightmare">Nightmare (Mimpi Buruk)</option>
+                        <option value="Recurring Dream">Recurring Dream (Mimpi Berulang)</option>
+                        <option value="Prophetic Dream">Prophetic Dream (Mimpi yang seperti nyata)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags (pisahkan dengan koma)</label>
+                    <input type="text" id="tags" name="tags" placeholder="Contoh: terbang, kota, damai">
+                    <small>Tips: Gunakan tags untuk memudahkan pencarian nanti</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Simpan Mimpi</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Batal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set tanggal hari ini sebagai default
+        document.getElementById('dream_date').valueAsDate = new Date();
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Journal - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌙 Dream Journal</h1>
+            <p class="subtitle">Catat dan analisis mimpi Anda</p>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>{{ total_dreams }}</h3>
+                <p>Total Mimpi</p>
+            </div>
+            {% for stat in dream_stats %}
+            <div class="stat-card">
+                <h3>{{ stat[1] }}</h3>
+                <p>{{ stat[0] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('add_dream') }}" class="btn btn-primary">+ Tambah Mimpi Baru</a>
+            <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Cari mimpi..." required>
+                <button type="submit" class="btn btn-secondary">Cari</button>
+            </form>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="dreams-grid">
+            {% if dreams %}
+                {% for dream in dreams %}
+                <div class="dream-card">
+                    <div class="dream-header">
+                        <h2>{{ dream[1] }}</h2>
+                        <span class="badge badge-{{ dream[5] }}">{{ dream[5] }}</span>
+                    </div>
+                    <p class="dream-date">📅 {{ dream[3] }}</p>
+                    <p class="dream-mood">😊 Mood: <strong>{{ dream[4] }}</strong></p>
+                    <p class="dream-preview">{{ dream[2][:150] }}{% if dream[2]|length > 150 %}...{% endif %}</p>
+                    {% if dream[6] %}
+                    <div class="tags">
+                        {% for tag in dream[6].split(',') %}
+                        <span class="tag">{{ tag.strip() }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="dream-actions">
+                        <a href="{{ url_for('view_dream', id=dream[0]) }}" class="btn btn-small">Lihat Detail</a>
+                        <a href="{{ url_for('edit_dream', id=dream[0]) }}" class="btn btn-small btn-edit">Edit</a>
+                        <a href="{{ url_for('delete_dream', id=dream[0]) }}" class="btn btn-small btn-delete" onclick="return confirm('Yakin ingin menghapus mimpi ini?')">Hapus</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <h2>📝 Belum ada mimpi yang dicatat</h2>
+                    <p>Mulai catat mimpi Anda hari ini!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
