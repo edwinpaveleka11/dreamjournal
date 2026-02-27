@@ -1,0 +1,154 @@
+# ===================================
+# Python
+# ===================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ===================================
+# Virtual Environment
+# ===================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ===================================
+# Flask
+# ===================================
+instance/
+.webassets-cache
+*.pyc
+
+# ===================================
+# Environment Variables
+# ===================================
+.env
+.env.local
+.env.*.local
+.flaskenv
+
+# ===================================
+# Database
+# ===================================
+*.db
+*.sqlite
+*.sqlite3
+database.sql
+*.sql.backup
+
+# ===================================
+# IDE / Editor
+# ===================================
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ===================================
+# Jupyter Notebook
+# ===================================
+.ipynb_checkpoints
+*.ipynb
+
+# ===================================
+# Testing
+# ===================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# ===================================
+# Logs
+# ===================================
+*.log
+logs/
+*.log.*
+
+# ===================================
+# OS Specific
+# ===================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===================================
+# Backup Files
+# ===================================
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+
+# ===================================
+# Project Specific
+# ===================================
+# Uncomment jika tidak ingin track file SQL backup
+# *.sql
+
+# Uncomment jika ada folder uploads
+# uploads/
+# static/uploads/
+
+# Uncomment jika ada migrations folder
+# migrations/versions/
