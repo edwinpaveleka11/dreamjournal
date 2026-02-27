@@ -10,44 +10,44 @@
     <div class="container">
         <header>
             <h1>🌙 Detail Mimpi</h1>
-            <a href="{{ url_for('index') }}" class="back-link">← Kembali ke Beranda</a>
+            <a href="{{ url_for('index') }}" class="back-link">← Kembali ke Home</a>
         </header>
 
         <div class="dream-detail">
             <div class="dream-detail-header">
-                <h2>{{ dream[1] }}</h2>
-                <span class="badge badge-{{ dream[5] }}">{{ dream[5] }}</span>
+                <h2>{{ dream.title }}</h2>
+                <span class="badge badge-{{ dream.dream_type.replace(' ', '.') }}">{{ dream.dream_type }}</span>
             </div>
 
             <div class="dream-meta">
                 <div class="meta-item">
                     <span class="meta-label">📅 Tanggal:</span>
-                    <span class="meta-value">{{ dream[3] }}</span>
+                    <span class="meta-value">{{ dream.dream_date }}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">😊 Mood:</span>
-                    <span class="meta-value">{{ dream[4] }}</span>
+                    <span class="meta-value">{{ dream.mood }}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">🎭 Tipe:</span>
-                    <span class="meta-value">{{ dream[5] }}</span>
+                    <span class="meta-value">{{ dream.dream_type }}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">📝 Dibuat:</span>
-                    <span class="meta-value">{{ dream[7] }}</span>
+                    <span class="meta-value">{{ dream.created_at.strftime('%Y-%m-%d %H:%M') if dream.created_at else '-' }}</span>
                 </div>
             </div>
 
             <div class="dream-description">
                 <h3>Deskripsi Mimpi:</h3>
-                <p>{{ dream[2] }}</p>
+                <p>{{ dream.description }}</p>
             </div>
 
-            {% if dream[6] %}
+            {% if dream.tags %}
             <div class="dream-tags-section">
                 <h3>Tags:</h3>
                 <div class="tags">
-                    {% for tag in dream[6].split(',') %}
+                    {% for tag in dream.tags.split(',') %}
                     <span class="tag">{{ tag.strip() }}</span>
                     {% endfor %}
                 </div>
@@ -55,8 +55,8 @@
             {% endif %}
 
             <div class="detail-actions">
-                <a href="{{ url_for('edit_dream', id=dream[0]) }}" class="btn btn-primary">✏️ Edit</a>
-                <a href="{{ url_for('delete_dream', id=dream[0]) }}" class="btn btn-delete" onclick="return confirm('Yakin ingin menghapus mimpi ini?')">🗑️ Hapus</a>
+                <a href="{{ url_for('edit_dream', id=dream.id) }}" class="btn btn-primary">✏️ Edit</a>
+                <a href="{{ url_for('delete_dream', id=dream.id) }}" class="btn btn-delete" onclick="return confirm('Yakin ingin menghapus mimpi ini?')">🗑️ Hapus</a>
             </div>
         </div>
     </div>

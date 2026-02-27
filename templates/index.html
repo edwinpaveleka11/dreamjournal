@@ -20,8 +20,8 @@
             </div>
             {% for stat in dream_stats %}
             <div class="stat-card">
-                <h3>{{ stat[1] }}</h3>
-                <p>{{ stat[0] }}</p>
+                <h3>{{ stat.count }}</h3>
+                <p>{{ stat.dream_type }}</p>
             </div>
             {% endfor %}
         </div>
@@ -47,23 +47,23 @@
                 {% for dream in dreams %}
                 <div class="dream-card">
                     <div class="dream-header">
-                        <h2>{{ dream[1] }}</h2>
-                        <span class="badge badge-{{ dream[5] }}">{{ dream[5] }}</span>
+                        <h2>{{ dream.title }}</h2>
+                        <span class="badge badge-{{ dream.dream_type.replace(' ', '.') }}">{{ dream.dream_type }}</span>
                     </div>
-                    <p class="dream-date">📅 {{ dream[3] }}</p>
-                    <p class="dream-mood">😊 Mood: <strong>{{ dream[4] }}</strong></p>
-                    <p class="dream-preview">{{ dream[2][:150] }}{% if dream[2]|length > 150 %}...{% endif %}</p>
-                    {% if dream[6] %}
+                    <p class="dream-date">📅 {{ dream.dream_date }}</p>
+                    <p class="dream-mood">😊 Mood: <strong>{{ dream.mood }}</strong></p>
+                    <p class="dream-preview">{{ dream.description[:150] }}{% if dream.description|length > 150 %}...{% endif %}</p>
+                    {% if dream.tags %}
                     <div class="tags">
-                        {% for tag in dream[6].split(',') %}
+                        {% for tag in dream.tags.split(',') %}
                         <span class="tag">{{ tag.strip() }}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
                     <div class="dream-actions">
-                        <a href="{{ url_for('view_dream', id=dream[0]) }}" class="btn btn-small">Lihat Detail</a>
-                        <a href="{{ url_for('edit_dream', id=dream[0]) }}" class="btn btn-small btn-edit">Edit</a>
-                        <a href="{{ url_for('delete_dream', id=dream[0]) }}" class="btn btn-small btn-delete" onclick="return confirm('Yakin ingin menghapus mimpi ini?')">Hapus</a>
+                        <a href="{{ url_for('view_dream', id=dream.id) }}" class="btn btn-small">Lihat Detail</a>
+                        <a href="{{ url_for('edit_dream', id=dream.id) }}" class="btn btn-small btn-edit">Edit</a>
+                        <a href="{{ url_for('delete_dream', id=dream.id) }}" class="btn btn-small btn-delete" onclick="return confirm('Yakin ingin menghapus mimpi ini?')">Hapus</a>
                     </div>
                 </div>
                 {% endfor %}

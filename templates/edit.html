@@ -10,38 +10,38 @@
     <div class="container">
         <header>
             <h1>✏️ Edit Mimpi</h1>
-            <a href="{{ url_for('index') }}" class="back-link">← Kembali ke Beranda</a>
+            <a href="{{ url_for('index') }}" class="back-link">← Kembali ke Home</a>
         </header>
 
         <div class="form-container">
-            <form method="POST" action="{{ url_for('edit_dream', id=dream[0]) }}">
+            <form method="POST" action="{{ url_for('edit_dream', id=dream.id) }}">
                 <div class="form-group">
                     <label for="title">Judul Mimpi *</label>
-                    <input type="text" id="title" name="title" value="{{ dream[1] }}" required placeholder="Contoh: Terbang di Atas Kota">
+                    <input type="text" id="title" name="title" value="{{ dream.title }}" required placeholder="Contoh: Terbang di Atas Kota">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Deskripsi Mimpi *</label>
-                    <textarea id="description" name="description" rows="6" required placeholder="Ceritakan mimpi Anda secara detail...">{{ dream[2] }}</textarea>
+                    <textarea id="description" name="description" rows="6" required placeholder="Ceritakan mimpi Anda secara detail...">{{ dream.description }}</textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="dream_date">Tanggal Mimpi *</label>
-                        <input type="date" id="dream_date" name="dream_date" value="{{ dream[3] }}" required>
+                        <input type="date" id="dream_date" name="dream_date" value="{{ dream.dream_date }}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="mood">Mood Setelah Bangun *</label>
                         <select id="mood" name="mood" required>
                             <option value="">Pilih Mood</option>
-                            <option value="Happy" {% if dream[4] == 'Happy' %}selected{% endif %}>😊 Happy</option>
-                            <option value="Sad" {% if dream[4] == 'Sad' %}selected{% endif %}>😢 Sad</option>
-                            <option value="Scared" {% if dream[4] == 'Scared' %}selected{% endif %}>😱 Scared</option>
-                            <option value="Confused" {% if dream[4] == 'Confused' %}selected{% endif %}>😕 Confused</option>
-                            <option value="Peaceful" {% if dream[4] == 'Peaceful' %}selected{% endif %}>😌 Peaceful</option>
-                            <option value="Nostalgic" {% if dream[4] == 'Nostalgic' %}selected{% endif %}>🥲 Nostalgic</option>
-                            <option value="Excited" {% if dream[4] == 'Excited' %}selected{% endif %}>🤩 Excited</option>
+                            <option value="Happy" {% if dream.mood == 'Happy' %}selected{% endif %}>😊 Happy</option>
+                            <option value="Sad" {% if dream.mood == 'Sad' %}selected{% endif %}>😢 Sad</option>
+                            <option value="Scared" {% if dream.mood == 'Scared' %}selected{% endif %}>😱 Scared</option>
+                            <option value="Confused" {% if dream.mood == 'Confused' %}selected{% endif %}>😕 Confused</option>
+                            <option value="Peaceful" {% if dream.mood == 'Peaceful' %}selected{% endif %}>😌 Peaceful</option>
+                            <option value="Nostalgic" {% if dream.mood == 'Nostalgic' %}selected{% endif %}>🥲 Nostalgic</option>
+                            <option value="Excited" {% if dream.mood == 'Excited' %}selected{% endif %}>🤩 Excited</option>
                         </select>
                     </div>
                 </div>
@@ -50,17 +50,17 @@
                     <label for="dream_type">Tipe Mimpi *</label>
                     <select id="dream_type" name="dream_type" required>
                         <option value="">Pilih Tipe</option>
-                        <option value="Normal Dream" {% if dream[5] == 'Normal Dream' %}selected{% endif %}>Normal Dream</option>
-                        <option value="Lucid Dream" {% if dream[5] == 'Lucid Dream' %}selected{% endif %}>Lucid Dream (Sadar saat bermimpi)</option>
-                        <option value="Nightmare" {% if dream[5] == 'Nightmare' %}selected{% endif %}>Nightmare (Mimpi Buruk)</option>
-                        <option value="Recurring Dream" {% if dream[5] == 'Recurring Dream' %}selected{% endif %}>Recurring Dream (Mimpi Berulang)</option>
-                        <option value="Prophetic Dream" {% if dream[5] == 'Prophetic Dream' %}selected{% endif %}>Prophetic Dream (Mimpi yang seperti nyata)</option>
+                        <option value="Normal Dream" {% if dream.dream_type == 'Normal Dream' %}selected{% endif %}>Normal Dream</option>
+                        <option value="Lucid Dream" {% if dream.dream_type == 'Lucid Dream' %}selected{% endif %}>Lucid Dream (Sadar saat bermimpi)</option>
+                        <option value="Nightmare" {% if dream.dream_type == 'Nightmare' %}selected{% endif %}>Nightmare (Mimpi Buruk)</option>
+                        <option value="Recurring Dream" {% if dream.dream_type == 'Recurring Dream' %}selected{% endif %}>Recurring Dream (Mimpi Berulang)</option>
+                        <option value="Prophetic Dream" {% if dream.dream_type == 'Prophetic Dream' %}selected{% endif %}>Prophetic Dream (Mimpi yang seperti nyata)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="tags">Tags (pisahkan dengan koma)</label>
-                    <input type="text" id="tags" name="tags" value="{{ dream[6] if dream[6] else '' }}" placeholder="Contoh: terbang, kota, damai">
+                    <input type="text" id="tags" name="tags" value="{{ dream.tags if dream.tags else '' }}" placeholder="Contoh: terbang, kota, damai">
                     <small>Tips: Gunakan tags untuk memudahkan pencarian nanti</small>
                 </div>
 
